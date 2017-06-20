@@ -1,7 +1,27 @@
-body {
+body, #rangoContador table {
 	background-color: #7315C5;
 	color: white;
 }
 button {
 	margin-bottom: 10px !important;
 }
+
+span {
+	color: red;
+}
+
+th, tr{
+	text-align: center;
+}
+
+h1,h2, caption{
+	background-color: #5B08A2;
+	color: white;
+	text-align: center;
+}
+
+select {
+	color: #5B08A2;
+}
+
+
