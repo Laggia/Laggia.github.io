@@ -1,5 +1,6 @@
 Vue.component('contador',{
     template: '<div>\
+                <div><h2>Su fecha actual es: {{ fechaActual }}</h2></div>\
             <h2>Cuenta regresiva configurable según los selects</h2>\
         <h4><table class="table">\
         <caption>{{ titulo }}</caption>\
@@ -25,7 +26,7 @@ Vue.component('contador',{
                    <tr>\
                     <td>\
                         <select v-model="yearsLimites">\
-                            <option v-for="year in yearsArreglo" :value="year.valor">{{ year.valor }}</option>\
+                            <option v-for="year in yearsArreglo" :value="year">{{ year }}</option>\
                         </select>\
                     </td>\
                     <td>\
@@ -69,6 +70,9 @@ Vue.component('contador',{
             segundos: '',
             ciclo: '',
             titulo: '',
+            fechaActual: '',
+            //limite de años q se agregaran al select desde el año actual
+            rangoYearsLimite: 2030, 
             //fecha limite (el valor del mes debe ser -1)
             segundosLimites: 00,
             minutosLimites: 00,
@@ -92,24 +96,7 @@ Vue.component('contador',{
                 {nombre: 'Noviembre', numero: 11, dias: 30},
                 {nombre: 'Diciembre', numero: 12, dias: 31},
             ],  
-            yearsArreglo: [
-                {valor: 2010},
-                {valor: 2011},
-                {valor: 2012},
-                {valor: 2013},
-                {valor: 2014},
-                {valor: 2015},
-                {valor: 2016},
-                {valor: 2017},
-                {valor: 2018},
-                {valor: 2019},
-                {valor: 2020},
-                {valor: 2021},
-                {valor: 2022},
-                {valor: 2023},
-                {valor: 2024},
-                {valor: 2025},
-            ],          
+            yearsArreglo: [],          
         };        
     },
     methods: {
@@ -118,6 +105,8 @@ Vue.component('contador',{
             this.titulo = 'Conteo hasta el día ' + ' ' + this.fechaLimite.getDate() + ' de ' +
             this.diasPorMes[this.fechaLimite.getMonth()].nombre + ' de ' + this.fechaLimite.getFullYear() +
          ', a las ' + this.cerosEsteticos(this.fechaLimite.getHours()) + ' : ' + this.cerosEsteticos(this.fechaLimite.getMinutes()) + ' : ' + this.cerosEsteticos(this.fechaLimite.getSeconds()) + '.';
+
+            this.fechaActual = this.obtenerFechaActual(new Date);
 
             if(this.fechaLimite >= new Date){
                 //obtencion de dateTime actual
@@ -221,17 +210,28 @@ Vue.component('contador',{
             }    
 
             return arregloDias;
+        },
+
+        obtenerFechaActual: function(actual){
+            return this.cerosEsteticos(actual.getDate()) + ' de ' + this.diasPorMes[actual.getMonth()].nombre + ' del ' 
+                + actual.getFullYear() + ' ,con hora ' + this.cerosEsteticos(actual.getHours()) + ' : ' + this.cerosEsteticos(actual.getMinutes()) + ' : '
+                + this.cerosEsteticos(actual.getSeconds()) + '.'; 
+        },
+
+        rangoYears: function(arr){
+            var date = new Date;
+            for(var i= date.getFullYear(); i <= this.rangoYearsLimite; i++ ){
+                arr.push(i);
+            }
+                
+            return arr;
         }
+
 
     },
     mounted: function(){
-        //(año, mes - 1, dia, hora, minutos, segundos)
-        //this.fechaLimite = new Date(this.yearsLimites, this.mesesLimites, this.diasLimites, this.horasLimites,this.minutosLimites,this.segundosLimites);
-        //this.ciclo = true;
-        //this.titulo = 'Conteo hasta el día ' + ' ' + this.fechaLimite.getDate() + ' de ' +
-        //this.diasPorMes[this.fechaLimite.getMonth()].nombre + ' de ' + this.fechaLimite.getFullYear() +
-         //', a las ' + this.cerosEsteticos(this.fechaLimite.getHours()) + ' : ' + this.cerosEsteticos(this.fechaLimite.getMinutes()) + ' : ' + this.cerosEsteticos(this.fechaLimite.getSeconds()) + '.';
-       setInterval(this.tiempoTotal, 1000);
+        setInterval(this.tiempoTotal, 1000);
+        this.yearsArreglo = this.rangoYears(this.yearsArreglo);
     }
 });
 
