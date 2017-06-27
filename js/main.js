@@ -31,7 +31,7 @@ Vue.component('contador',{
                     </td>\
                     <td>\
                         <select v-model="mesesLimites">\
-                            <option v-for="meses in 12" :value="meses - 1">{{ meses }}</option>\
+                            <option v-for="meses in diasPorMes" :value="meses.numero -1">{{ meses.nombre }}</option>\
                         </select>\
                     </td>\
                     <td>\
