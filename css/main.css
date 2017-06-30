@@ -9,7 +9,44 @@
 	color: #fff;
 }
 
+.reloj {
+    width: 100px;
+    height: 100px;
+    background: red;
+    position: relative;
+    /*-webkit-animation: mymove 5s infinite; /* Safari 4.0 - 8.0 */
+    -webkit-animation-timing-function: linear; /* Safari 4.0 - 8.0 */
+    /*animation: mymove 5s infinite;*/
+    animation-timing-function: linear;
+}
 
+/* Safari 4.0 - 8.0 *
+@-webkit-keyframes mymove {
+    0%
+     {left: 100px;}
+	50%
+	 {left: 0px;}	
+    100%
+     {left: 200px;}
+}*/
+
+@-webkit-keyframes otromove {
+    0%
+     {left: 200px;}
+	50%
+	 {left: 0px;}	
+    100%
+     {left: 100px;}
+}
+
+/*@keyframes mymove {
+    0%
+     {left: 100px;}
+	50%
+	 {left: 0px;}	
+    100%
+     {left: 200px;}
+}*/
 
 
 

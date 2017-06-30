@@ -59,6 +59,8 @@ Vue.component('contador',{
                    \
                 </tbody>\
             </table></h4>\
+            <div id="reloj" :style="[relojObject]" class="reloj"></div>\
+            <button id="btnDireccion" @click="detenerCuadrado" type="button">{{ relojObject.direccion }}</button>\
     </div>',
     data: function(){
         return {
@@ -97,7 +99,14 @@ Vue.component('contador',{
                 {nombre: 'Noviembre', numero: 11, dias: 30},
                 {nombre: 'Diciembre', numero: 12, dias: 31},
             ],  
-            yearsArreglo: [],          
+            yearsArreglo: [], 
+
+            relojObject:{               
+                '-webkit-animation': 'mymove 5s infinite',
+                cambiado: false,
+                direccion: '',
+            },  
+            keyframes: '',      
         };        
     },
     methods: {
@@ -226,20 +235,51 @@ Vue.component('contador',{
             }
                 
             return arr;
-        }
+        },
+
+        seguimiento: function(){
+            //console.log(document.getElementById('reloj').getBoundingClientRect().left);
+        },
+
+        detenerCuadrado: function(){
+            if(this.relojObject.cambiado){
+                document.getElementsByTagName( 'style' )[0].innerHTML = '.reloj{-webkit-animation: mymove 5s infinite;} \n' + this.keyframesCuadrado('0%','45%','90%');         
+                this.relojObject.cambiado = false;
+                //this.relojObject['-webkit-animation'] = 'mymove 5s infinite';
+                this.relojObject.direccion = 'Izquierda';
+            }
+            else{
+                this.relojObject.cambiado = true;
+                document.getElementsByTagName( 'style' )[0].innerHTML = '.reloj{-webkit-animation: mymove 5s infinite;} \n' + this.keyframesCuadrado('90%','45%','0%');
+                //this.relojObject['-webkit-animation'] = 'mymove 5s infinite';
+                this.relojObject.direccion = 'Derecha';
+            }
+        },
+
+        keyframesCuadrado: function(cero, mitad, final){
+            return this.keyframes = '@-webkit-keyframes mymove {\
+                            0%\n \
+                            {left: ' + cero +';}\n \
+                            50%\n \
+                            {left: ' + mitad +';}\n \
+                            100%\n \
+                            {left: ' + final +';}\n \
+                        }';
+        },
 
 
     },
     mounted: function(){
         setInterval(this.tiempoTotal, 1000);
+        setInterval(this.seguimiento, 1000);
         this.yearsArreglo = this.rangoYears(this.yearsArreglo);
+
+       
+        var s = document.createElement( 'style' );
+        s.innerHTML = this.keyframes;
+        document.getElementsByTagName( 'head' )[ 0 ].appendChild( s );
+
+        document.getElementById('btnDireccion').click();
     }
 });
 
-// var contador = new Vue ({
-//     el: '#rangoContador',
-//     data:{
-//         externo: '',
-//     }
-
-// });
