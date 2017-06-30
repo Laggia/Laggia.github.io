@@ -3,43 +3,67 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Presentación</title>
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<!-- Optional theme -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<title>Regresiva</title>
+	<!-- Bootstrap 4 CSS -->
+	<link rel="stylesheet" type="text/css" href="bootstrap4/css/bootstrap.min.css">
 	<!--Propios-->
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 </head>
 <body>
+<section id="raiz">
 
-<div class="container">
-	<div class="row">
-		<div class="col-md-6 col-md-offset-3">
-			<div class="text-center" style="margin-top: 20px;">
-
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h1>Proyectos de Felipe Burgos y Camila Berrios<span class="glyphicon glyphicon-heart"></span></h1>
-					</div>
-					<div class="panel-body">
-						<h2>Basados en: </h2>
-						<a href="https://laravel.com/" target="_blank" class="btn btn-danger">LARAVEL</a>
-						<a href="http://getbootstrap.com/" target="_blank" class="btn btn-primary">BOOTSTRAP</a>
-						<a href="https://vuejs.org/" target="_blank" class="btn btn-success">VUE</a>
-						
-					</div>
-					<div class="panel-footer">
-						<contador id="rangoContador"></contador>
-					</div>
-				</div>	
-
-
-
+	<!-- definicion de imagen principal (portada) junto a elmentos -->
+	<div class="slider d-flex justify-content-center align-items-center">
+		<div class="row justify-content-center">
+			<div class="col-6">
+				<div class="jumbotron px-3 py-3">
+				  <h3 class="text-center">Bienvenido al proyecto "Regresiva"</h3>
+				  <p class="lead">Primera versión de esta página que constara de contadores para el aviso de eventos.</p>
+				  <hr class="my-4">
+				    <div class="d-flex justify-content-center">
+				    	<!-- Button trigger modal -->
+							<button type="button" class="btn btn-secondary btn-modal" data-toggle="modal" data-target="#myModal">
+							  Probar ahora
+							</button>
+				    </div>
+				</div>
 			</div>
 		</div>
+		
 	</div>
-</div>
+	<!-- fin portada -->
+
+	<!-- Modal -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog modal-lg" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">Contador</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+
+		      	<!-- contador -->
+		        <section class="container">					
+					<contador clase-tabla="table table-striped table-bordered" clase-test="test"></contador>							
+				</section>
+				<!-- fin contador -->
+
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary btn-modal" data-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	<!-- fin modal -->
+
+</section>
+<!-- fin seccion raz -->
+
+
 
 	
 
@@ -48,11 +72,29 @@
 	  src="https://code.jquery.com/jquery-3.2.1.js"
 	  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
 	  crossorigin="anonymous"></script>
-	<!-- Latest compiled and minified JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>	
+	
+	<!-- tether -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+
+	<!-- Bootstrap 4 -->
+	<script src="bootstrap4/js/bootstrap.min.js"></script>
+
 	<!--Vuejs-->
 	<script src="https://unpkg.com/vue@2.3.4"></script>
+
 	<!--propios-->
+	<script src="js/contador.js" type="text/javascript" charset="utf-8" async defer></script>
 	<script src="js/main.js" type="text/javascript" charset="utf-8" async defer></script>
+	
+	<script>
+		$(document).ready(function(){
+			$('#anos').click(function(){
+				$('#anosext').text($('#anos').val());	
+			});
+    		      
+		});
+
+
+	</script>
 </body>
 </html>
