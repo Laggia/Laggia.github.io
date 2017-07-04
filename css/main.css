@@ -9,7 +9,51 @@
 	color: #fff;
 }
 
-.reloj {
+#fondo-select-years, #fondo-select-meses, #select-years, #select-meses, #boton-up-years, #boton-down-years, #boton-up-meses, #boton-down-meses {	
+	background: grey;
+}
+
+#select-years, #select-meses{
+	width: 70px;
+	height: 70px;
+	/*appearance: none;
+	-moz-appearance:none;  Firefox 
+    -webkit-appearance:none; /* Safari and Chrome */
+}
+
+#fondo-select-years, #fondo-select-meses{
+	overflow: hidden;
+	height: 130px;
+	width: 70px;
+}
+
+#boton-up-years, #boton-down-years, #boton-up-meses, #boton-down-meses{
+	width: 70px;
+	appearance: none;
+	-moz-appearance:none; /* Firefox */
+    -webkit-appearance:none; /* Safari and Chrome */
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.semi-square {
+   -webkit-border-radius: 5px;
+   -moz-border-radius: 5px;
+   border-radius: 5px;
+}
+
+.rounded {
+   -webkit-border-radius: 20px;
+   -moz-border-radius: 20px;
+   border-radius: 20px;
+}
+
+.rotar{
+	-ms-transform: rotate(-40deg); /* IE 9 */
+    -webkit-transform: rotate(-40deg); /* Safari */
+    transform: rotate(-40deg); /* Standard syntax */
+}
+	
+.reloj{
     width: 100px;
     height: 100px;
     background: red;

@@ -1,67 +1,104 @@
 Vue.component('contador',{
     props:['claseTabla', 'claseTest'],
-    template: '<div>\
-                <div><h2>Su fecha actual es: {{ fechaActual }}</h2></div>\
-            <h2>Cuenta regresiva configurable según los selects</h2>\
-        <h4><table :class="claseTabla">\
-        <caption>{{ titulo }}</caption>\
-            <thead>\
-                <tr>\
-                    <th>Años</th>\
-                    <th>Meses</th>\
-                    <th>Días</th>\
-                    <th>Horas</th>\
-                    <th>Minutos</th>\
-                    <th>Segundos</th>\
-                </tr>\
-            </thead>\
-                <tbody>\
-                    <tr>\
-                        <td :class="claseTest">{{ years }}</td>\
-                        <td>{{ meses }}</td>\
-                        <td>{{ dias }}</td>\
-                        <td>{{ horas }}</td>\
-                        <td>{{ minutos }}</td>\
-                        <td>{{ segundos }}</td>\
-                   </tr>\
-                   <tr>\
-                    <td>\
-                        <select id="anos" v-model="yearsLimites">\
-                            <option v-for="year in yearsArreglo" :value="year">{{ year }}</option>\
-                        </select>\
-                    </td>\
-                    <td>\
-                        <select v-model="mesesLimites">\
-                            <option v-for="meses in diasPorMes" :value="meses.numero -1">{{ meses.nombre }}</option>\
-                        </select>\
-                    </td>\
-                    <td>\
-                        <select v-model="diasLimites">\
-                            <option v-for="dia in diasPorMesFuncion(mesesLimites, yearsLimites)" :value="dia">{{ dia }}</option>\
-                        </select>\
-                    </td>\
-                    <td>\
-                        <select v-model="horasLimites">\
-                            <option v-for="hora in 24" :value="hora - 1">{{ hora -1 }}</option>\
-                        </select>\
-                    </td>\
-                    <td>\
-                        <select v-model="minutosLimites">\
-                            <option v-for="minuto in 60" :value="minuto - 1">{{ minuto - 1}}</option>\
-                        </select>\
-                    </td>\
-                    <td>\
-                        <select v-model="segundosLimites">\
-                            <option v-for="segundo in 60" :value="segundo - 1">{{ segundo - 1}}</option>\
-                        </select>\
-                    </td>\
-                   </tr>\
-                   \
-                </tbody>\
-            </table></h4>\
-            <div id="reloj" :style="[relojObject]" class="reloj"></div>\
-            <button id="btnDireccion" @click="detenerCuadrado" type="button">{{ relojObject.direccion }}</button>\
-    </div>',
+    template: ['<div class="h4">',
+                // '<div><h2>Su fecha actual es: {{ fechaActual }}</h2></div>',
+            // '<h2>Cuenta regresiva configurable según los selects</h2>',
+        '<div class="h1">',    
+        '<div class="d-flex justify-content-center align-items-center">', 
+        // columnas del contador
+            '<div class="d-flex flex-column justify-content-center align-items-center">',
+                '<div>Añ</div>',
+                '<div>{{ years }}</div>',
+                '<div id="fondo-select-years" class="d-flex flex-column align-items-center justify-content-center rounded">',
+                    '<button id="boton-up-years" type="button" class="border-0 h4"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>',
+                    '<select id="select-years" v-model="yearsLimites" class="semi-square border-0 my-0 pt-0">',
+                    '<option v-for="year in yearsArreglo" :value="year">{{ year - 2000 }}</option>',
+                    '</select>',
+                    '<button id="boton-down-years" type="button" class="border-0 h4"><i class="fa fa-chevron-down" aria-hidden="true"></i></button>',
+                '</div>',
+            '</div>',
+
+            '<div class="d-flex flex-column justify-content-center align-items-center">',
+                '<div>Me</div>',
+                '<div>{{ meses }}</div>',
+                '<div id="fondo-select-meses" class="d-flex flex-column align-items-center justify-content-center rounded">',
+                    '<button id="boton-up-meses" type="button" class="border-0 h4"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>',
+                    '<select id="select-meses" v-model="mesesLimites" class="semi-square border-0 my-0 pt-0">',
+                    '<option v-for="meses in diasPorMes" :value="meses.numero -1">{{ cerosEsteticos(meses.numero) }}</option>',
+                    '</select>',
+                    '<button id="boton-down-meses" type="button" class="border-0 h4"><i class="fa fa-chevron-down" aria-hidden="true"></i></button>',
+                '</div>',
+            '</div>',
+            // fin columnas del contador
+
+            
+        '</div>',
+
+
+        '<table :class="claseTabla">',
+        '<caption>{{ titulo }}</caption>',
+            '<thead>',
+                '<tr>',
+                    '<th>Añ</th>',
+                    '<th>Me</th>',
+                    '<th>Dí</th>',
+                    '<th>Ho</th>',
+                    '<th>Mi</th>',
+                    '<th>Se</th>',
+                '</tr>',
+            '</thead>',
+                '<tbody>',
+                    '<tr>',
+                        '<td :class="claseTest">{{ years }}</td>',
+                        '<td>{{ meses }}</td>',
+                        '<td>{{ dias }}</td>',
+                        '<td>{{ horas }}</td>',
+                        '<td>{{ minutos }}</td>',
+                        '<td>{{ segundos }}</td>',
+                   '</tr>',
+                   '<tr class="d-flex justify-content-center">',
+                    '<td class="py-0 px-0">',
+                    '<div id="fondo-select-years" class="d-flex flex-column align-items-center justify-content-center rounded">',
+                        '<button id="boton-up-years" type="button" class="border-0 h4"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>',
+                        '<select id="select-years" v-model="yearsLimites" class="semi-square border-0 my-0 pt-0">',
+                            '<option v-for="year in yearsArreglo" :value="year">{{ year - 2000 }}</option>',
+                        '</select>',
+                        '<button id="boton-down-years" type="button" class="border-0 h4"><i class="fa fa-chevron-down" aria-hidden="true"></i></button>',
+                    '</div>',
+                    '</td>',
+                    '<td>',
+                        '<select id="select-meses" v-model="mesesLimites">',
+                            '<option v-for="meses in diasPorMes" :value="meses.numero -1">{{ cerosEsteticos(meses.numero) }}</option>',
+                        '</select>',
+                    '</td>',
+                    '<td>',
+                        '<select v-model="diasLimites">',
+                            '<option v-for="dia in diasPorMesFuncion(mesesLimites, yearsLimites)" :value="dia">{{ dia }}</option>',
+                        '</select>',
+                    '</td>',
+                    '<td>',
+                        '<select v-model="horasLimites">',
+                            '<option v-for="hora in 24" :value="hora - 1">{{ hora -1 }}</option>',
+                        '</select>',
+                    '</td>',
+                    '<td>',
+                        '<select v-model="minutosLimites">',
+                            '<option v-for="minuto in 60" :value="minuto - 1">{{ minuto - 1}}</option>',
+                        '</select>',
+                    '</td>',
+                    '<td>',
+                        '<select v-model="segundosLimites">',
+                            '<option v-for="segundo in 60" :value="segundo - 1">{{ segundo - 1}}</option>',
+                        '</select>',
+                    '</td>',
+                   '</tr>',
+                '</tbody>',
+            '</table>',
+            '</div>',
+            '<div id="reloj" :style="[relojObject]" class="reloj"></div>',
+            '<button id="btnDireccion" @click="detenerCuadrado" type="button">{{ relojObject.direccion }}</button>',
+    '</div>'].join(''),
+
     data: function(){
         return {
             fechaLimite: '',
@@ -257,14 +294,14 @@ Vue.component('contador',{
         },
 
         keyframesCuadrado: function(cero, mitad, final){
-            return this.keyframes = '@-webkit-keyframes mymove {\
-                            0%\n \
-                            {left: ' + cero +';}\n \
-                            50%\n \
-                            {left: ' + mitad +';}\n \
-                            100%\n \
-                            {left: ' + final +';}\n \
-                        }';
+            return this.keyframes = ['@-webkit-keyframes mymove {',
+                                                '0%',
+                                                '{left: ' + cero +';}',
+                                                '50%',
+                                                '{left: ' + mitad +';}',
+                                                '100%',
+                                                '{left: ' + final +';}',
+                                            '}'].join('');
         },
 
 
