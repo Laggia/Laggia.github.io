@@ -9,25 +9,29 @@
 	color: #fff;
 }
 
-#fondo-select-years, #fondo-select-meses, #select-years, #select-meses, #boton-up-years, #boton-down-years, #boton-up-meses, #boton-down-meses {	
+#fondo-select-years, #fondo-select-meses, #fondo-select-dias, #fondo-select-horas, #fondo-select-minutos, #fondo-select-segundos,
+#select-years, #select-meses, #select-dias, #select-horas, #select-minutos, #select-segundos,
+#boton-up-years, #boton-up-meses, #boton-up-dias, #boton-up-horas, #boton-up-minutos, #boton-up-segundos,  
+#boton-down-years, #boton-down-meses, #boton-down-dias, #boton-down-horas, #boton-down-minutos, #boton-down-segundos {	
 	background: grey;
 }
 
-#select-years, #select-meses{
+#select-years, #select-meses, #select-dias, #select-horas, #select-minutos, #select-segundos{
 	width: 70px;
-	height: 70px;
+	height: 40px;
 	/*appearance: none;
 	-moz-appearance:none;  Firefox 
     -webkit-appearance:none; /* Safari and Chrome */
 }
 
-#fondo-select-years, #fondo-select-meses{
+#fondo-select-years, #fondo-select-meses, #fondo-select-dias, #fondo-select-horas, #fondo-select-minutos, #fondo-select-segundos{
 	overflow: hidden;
-	height: 130px;
+	height: 115px;
 	width: 70px;
 }
 
-#boton-up-years, #boton-down-years, #boton-up-meses, #boton-down-meses{
+#boton-up-years, #boton-up-meses, #boton-up-dias, #boton-up-horas, #boton-up-minutos, #boton-up-segundos,
+#boton-down-years, #boton-down-meses, #boton-down-dias, #boton-down-horas, #boton-down-minutos, #boton-down-segundos {
 	width: 70px;
 	appearance: none;
 	-moz-appearance:none; /* Firefox */

@@ -15,52 +15,25 @@
 <section id="raiz">
 
 	<!-- definicion de imagen principal (portada) junto a elmentos -->
-	<div class="slider d-flex justify-content-center align-items-center">
-		<div class="row justify-content-center">
-			<div class="col-8">
-				<div class="jumbotron px-3 py-3">
-				  <h1 class="text-center">Bienvenido al proyecto "Regresiva"</h1>
-				  <p class="lead">Primera versión de esta página que constara de contadores para el aviso de eventos. (Esta bajo remodelación.)</p>
-				  <hr class="my-4">
-				    <div class="d-flex justify-content-center">
-				    	<!-- Button trigger modal -->
-							<button type="button" class="btn btn-secondary btn-modal" data-toggle="modal" data-target="#myModal" disabled>
-							  Pronto
-							</button>
-				    </div>
+	<div class="slider d-flex align-items-center">
+		<div class="container">
+			<div class="row justify-content-center">
+				<div class="col-sm-12 col-md-10 col-lg-8">
+					<div class="card">
+					  	<div class="card-header text-center h1">Contador v1.1</div>
+						<div class="card-block">
+							<!-- contador -->
+					        <section>					
+								<contador :component-prop="propiedades"></contador>							
+							</section>
+							<!-- fin contador -->	 	
+						</div>
+					</div>
 				</div>
-			</div>
+			</div>	
 		</div>
-		
 	</div>
 	<!-- fin portada -->
-
-	<!-- Modal -->
-		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-		  <div class="modal-dialog modal-lg" role="document">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <h5 class="modal-title" id="exampleModalLabel">Contador</h5>
-		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-		          <span aria-hidden="true">&times;</span>
-		        </button>
-		      </div>
-		      <div class="modal-body">
-
-		      	<!-- contador -->
-		        <section class="container">					
-					<contador clase-tabla="table" clase-test="test"></contador>							
-				</section>
-				<!-- fin contador -->
-
-		      </div>
-		      <div class="modal-footer">
-		        <button type="button" class="btn btn-secondary btn-modal" data-dismiss="modal">Close</button>
-		      </div>
-		    </div>
-		  </div>
-		</div>
-	<!-- fin modal -->
 
 </section>
 <!-- fin seccion raz -->
@@ -82,7 +55,7 @@
 	<script src="bootstrap4/js/bootstrap.min.js"></script>
 
 	<!--Vuejs-->
-	<script src="https://unpkg.com/vue@2.3.4"></script>
+	<script src="VueJs/vue.js"></script>
 
 	<!--propios-->
 	<script src="js/contador.js" type="text/javascript" charset="utf-8" async defer></script>
