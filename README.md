@@ -1,2 +1,2 @@
-# Laggia.github.io
-Presentación de proyectos, hasta el momento se implemento un contador de cuenta regresiva en Vue.js
+# Contador heho en Vue js como web component
+Se busca complementarlo con laravel posteriormente.
